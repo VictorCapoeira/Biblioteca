@@ -28,15 +28,24 @@ public class UserAdm{
         livros = new List<Livro>();
     }
     
-    static void cadastrarLivro(){
-        Console.WriteLine("Digite")
-        string n;
-        string a;
-        string g;
-        int q;
-        int i;
+    public void cadastrarLivro(){
+        Console.WriteLine("Informe o titulo:");
+        string n = Console.ReadLine();
+        Console.WriteLine("Informe o autor:");
+        string a = Console.ReadLine();
+        Console.WriteLine("Informe o genero:");
+        string g = Console.ReadLine();
+        Console.WriteLine("Informe a quantidade:");
+        int q = int.Parse(Console.ReadLine());
+        Console.WriteLine("Informe o Id:");
+        int i = int.Parse(Console.ReadLine());
         Livro novoLivro = new Livro(n,a,g,q,i);
-
+        livros.Add(novoLivro);
+    }
+    public void alterarLivro(){
+        Console.WriteLine("Informe o Id do livro que deseja alterar: ");
+        int id = int.Parse(Console.ReadLine());
+        Livro livro = livros.Find(l => l.id == id);
     }
 }
 public class Livro{

@@ -5,36 +5,6 @@ public class Biblioteca{
     public Biblioteca(){
         livros = new List<Livro>();
     }
-    public void Listarlivro(){
-        if(livros.Count != 0){
-            foreach(var livro in livros){
-                Console.WriteLine($"Titulo: {livro.nome} - Autor: {livro.autor} - Genero: {livro.genero} - Quantidade disponivel: {livro.quantidade} - ID: {livro.id}");
-            }
-        }else
-            Console.WriteLine("Não existe livros cadastrados!");
-    }
-}
-public class UserCliente{
-    public string nome {get; set;}
-    public string email {get; set;}
-    public string user {get; set;}
-    public string senha {get; set;}
-    public int idade {get; set;}
-    public int livrosEmprestados {get; set;}
-    public UserCliente(string n, string e, string u, string s, int i){
-        nome = n;
-        email = e;
-        user = u;
-        senha = s;
-        idade = i;
-    }
-    
-}
-public class UserAdm : UserCliente{
-    public UserAdm(string n, string e, string u, string s, int i) : base(n , e , u , s, i){
-        
-    }
-    
     public void cadastrarLivro(){
         Console.WriteLine("Informe o titulo:");
         string n = Console.ReadLine();
@@ -81,6 +51,50 @@ public class UserAdm : UserCliente{
             Console.WriteLine("Livro removido!");
         }else
             Console.WriteLine("Livro não encontrado!");
+    }
+    public void Listarlivro(){
+        if(livros.Count != 0){
+            foreach(var livro in livros){
+                Console.WriteLine($"Titulo: {livro.nome} - Autor: {livro.autor} - Genero: {livro.genero} - Quantidade disponivel: {livro.quantidade} - ID: {livro.id}");
+            }
+        }else
+            Console.WriteLine("Não existe livros cadastrados!");
+    }
+}
+public class UserCliente{
+    public string nome {get; set;}
+    public string email {get; set;}
+    public string user {get; set;}
+    public string senha {get; set;}
+    public int idade {get; set;}
+    public int livrosEmprestados {get; set;}
+    private Biblioteca biblioteca;
+    public UserCliente(string n, string e, string u, string s, int i, Biblioteca b){
+        nome = n;
+        email = e;
+        user = u;
+        senha = s;
+        idade = i;
+        biblioteca = b;
+    }
+    public void listarLivros(){
+        biblioteca.Listarlivro();
+    }
+}
+public class UserAdm : UserCliente{
+    private Biblioteca biblioteca;
+    public UserAdm(string n, string e, string u, string s, int i, Biblioteca b) : base(n , e , u , s, i,b){
+        biblioteca = b;
+    }
+    
+    public void cadastrarLivro(){
+        biblioteca.cadastrarLivro();
+    }
+    public void alterarLivro(){
+        biblioteca.alterarLivro();
+    }
+    public void excluirLivro(){
+        biblioteca.excluirLivro();
     }
     
 }

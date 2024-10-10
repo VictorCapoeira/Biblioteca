@@ -24,7 +24,7 @@ public class Biblioteca{
         int id = int.Parse(Console.ReadLine());
         Livro livro = livros.Find(l => l.id == id);
         if(livro != null){
-            Console.WriteLine("Altere o titul:");
+            Console.WriteLine("Altere o titulo:");
             string n = Console.ReadLine();
             livro.nome = n;
             Console.WriteLine("Altere o autor:"); 
@@ -156,18 +156,26 @@ class Program{
                         switch(admesc){
                             case "1":
                             adm1.cadastrarLivro();
+                            Console.ReadKey();
+                            Console.Clear();
                             break;
                             case "2":
                             adm1.alterarLivro();
+                            Console.ReadKey();
+                            Console.Clear();
                             break;
                             case "3":
                             adm1.excluirLivro();
+                            Console.ReadKey();
+                            Console.Clear();
                             break;
                             case "4":
                             adm1.listarLivros();
                             break;
                             case "5":
                             vefAdm = true;
+                            Console.ReadKey();
+                            Console.Clear();
                             break;
                         }
                     }
@@ -190,9 +198,13 @@ class Program{
                             break;
                             case "2":
                             cliente1.pegarEmprestado();
+                            Console.ReadKey();
+                            Console.Clear();
                             break;
                             case "3":
                             vefCliente = true;
+                            Console.ReadKey();
+                            Console.Clear();
                             break;
                             
                         }

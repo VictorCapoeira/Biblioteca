@@ -6,6 +6,10 @@ public class Biblioteca{
         livros = new List<Livro>();
     }
     public void cadastrarLivro(){
+        Console.ForegroundColor = ConsoleColor.White;
+        Console.BackgroundColor = ConsoleColor.Black;
+        Console.WriteLine("Cadastro de livros:");
+        Console.ResetColor();
         Console.WriteLine("Informe o titulo:");
         string n = Console.ReadLine();
         Console.WriteLine("Informe o autor:");
@@ -18,8 +22,15 @@ public class Biblioteca{
         int i = int.Parse(Console.ReadLine());
         Livro novoLivro = new Livro(n,a,g,q,i);
         livros.Add(novoLivro);
+        Console.ForegroundColor = ConsoleColor.DarkGreen;
+        Console.WriteLine("Livro cadastrado com sucesso!");
+        Console.ResetColor();
     }
     public void alterarLivro(){
+        Console.ForegroundColor = ConsoleColor.White;
+        Console.BackgroundColor = ConsoleColor.Black;
+        Console.WriteLine("Alteração de livros:");
+        Console.ResetColor();
         Console.WriteLine("Informe o Id do livro que deseja alterar: ");
         int id = int.Parse(Console.ReadLine());
         Livro livro = livros.Find(l => l.id == id);
@@ -39,28 +50,54 @@ public class Biblioteca{
             Console.WriteLine("Altere o id: ");
             int i = int.Parse(Console.ReadLine());
             livro.id = i;
-        }else
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("Livro alterado com sucesso!");
+            Console.ResetColor();
+        }else{
+            Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.WriteLine("Livro não encontrado!");
+            Console.ResetColor();
+        }
     }
     public void excluirLivro(){
+        Console.ForegroundColor = ConsoleColor.White;
+        Console.BackgroundColor = ConsoleColor.Black;
+        Console.WriteLine("Excluir livros:");
+        Console.ResetColor();
         Console.WriteLine("Informe o Id do livro que deseja excluir: ");
         int id = int.Parse(Console.ReadLine());
         Livro livro = livros.Find(l => l.id == id);
         if(livro != null){
             livros.Remove(livro);
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("Livro removido!");
-        }else
+            Console.ResetColor();
+        }else{
+            Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.WriteLine("Livro não encontrado!");
+            Console.ResetColor();
+        }
     }
     public void Listarlivro(){
         if(livros.Count != 0){
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.WriteLine("Lista de livros:");
+            Console.ResetColor();
             foreach(var livro in livros){
                 Console.WriteLine($"Titulo: {livro.nome} - Autor: {livro.autor} - Genero: {livro.genero} - Quantidade disponivel: {livro.quantidade} - ID: {livro.id}");
             }
-        }else
+        }else{
+            Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.WriteLine("Não existe livros cadastrados!");
+            Console.ResetColor();
+        }
     }
     public void pegarEmprestado(){
+        Console.ForegroundColor = ConsoleColor.White;
+        Console.BackgroundColor = ConsoleColor.Black;
+        Console.WriteLine("Emprestimo de livros:");
+        Console.ResetColor();
         Console.WriteLine("Informe o Id do livro que deseja: ");
         int id = int.Parse(Console.ReadLine());
         Livro livro = livros.Find(l => l.id == id);
@@ -68,9 +105,14 @@ public class Biblioteca{
         if(livro != null && livro.quantidade > 0){
             livro.quantidade --;
             Console.WriteLine(livro.quantidade + "Valor dentro do IF");
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("Emprestimo realizado!");
-        }else
-            Console.WriteLine("Livro não encontrado!");
+            Console.ResetColor();
+        }else{
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Livro não encontrado ou indisponivel!");
+            Console.ResetColor();
+        }
         
     }
 }
@@ -94,8 +136,11 @@ public class UserCliente{
         biblioteca.Listarlivro();
     }
     public void pegarEmprestado(){
-        if(livrosEmprestados >= 3)
-            Console.WriteLine("Limite de 3 livros emprestado atingingdos!");
+        if(livrosEmprestados >= 3){
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Limite de 3 livros emprestado atigindo!");
+            Console.ResetColor();
+            }
         else{
             biblioteca.pegarEmprestado();
             livrosEmprestados++;
@@ -140,6 +185,10 @@ class Program{
         UserCliente cliente1 = new UserCliente("Alma", "Alma@outlook.com", "almagui", "alma2", 20, biblioteca);
         bool vef = false;
         while(vef == false){
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.WriteLine("BEM-VINDO AO SISTEMA DE BIBLIOTECA!");
+            Console.ResetColor();
             Console.WriteLine("Deseja logar como Administrador(a) ou Cliente(c)? Se não deseja logar, digite s.");
             string loginEsc = Console.ReadLine().ToLower();
             if(loginEsc == "a"){

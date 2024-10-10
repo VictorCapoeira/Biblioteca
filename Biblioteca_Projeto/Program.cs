@@ -146,7 +146,29 @@ class Program{
                 Console.WriteLine("Administrador senha: ");
                 string admSenha = Console.ReadLine();
                 if(adm1.user == admUser && adm1.senha == admSenha){
-                    
+                    Console.WriteLine("Bem-vindo administrador!");
+                    bool vefAdm = false;
+                    while(vefAdm == false){
+                        Console.WriteLine("Escolha uma opção de ação: \n 1 - Cadastrar livro \n 2 - Alterar livro \n 3 - Excluir livro \n 4 - Listar livros \n 5 - Sair");
+                        string admesc = Console.ReadLine();
+                        switch(admesc){
+                            case "1":
+                            adm1.cadastrarLivro();
+                            break;
+                            case "2":
+                            adm1.alterarLivro();
+                            break;
+                            case "3":
+                            adm1.excluirLivro();
+                            break;
+                            case "4":
+                            adm1.listarLivros();
+                            break;
+                            case "5":
+                            vefAdm = true;
+                            break;
+                        }
+                    }
                 }else
                     Console.WriteLine("Usuario ou senha incorretos!!");
             }else if(loginEsc == "c"){
@@ -155,7 +177,24 @@ class Program{
                 Console.WriteLine("Cliente senha: ");
                 string clienteSenha = Console.ReadLine();
                 if(cliente1.user == clienteUser && cliente1.senha == clienteSenha){
-
+                    Console.WriteLine("Bem-vindo cliente!");
+                    bool vefCliente = false;
+                    while(vefCliente == false){
+                        Console.WriteLine("Escolha uma opção de ação: \n 1 - Listar livro \n 2 - Emprestar livro \n 3 - Sair");
+                        string clienteesc = Console.ReadLine();
+                        switch(clienteesc){
+                            case "1":
+                            cliente1.listarLivros();
+                            break;
+                            case "2":
+                            cliente1.pegarEmprestado();
+                            break;
+                            case "3":
+                            vefCliente = true;
+                            break;
+                            
+                        }
+                    }
                 }else
                     Console.WriteLine("Usuario ou senha incorretos!!");
             }

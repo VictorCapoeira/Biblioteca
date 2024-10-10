@@ -60,6 +60,17 @@ public class Biblioteca{
         }else
             Console.WriteLine("Não existe livros cadastrados!");
     }
+    public void pegarEmprestado(){
+        Console.WriteLine("Informe o Id do livro que deseja: ");
+        int id = int.Parse(Console.ReadLine());
+        Livro livro = livros.Find(l => l.id == id);
+        if(livro != null && livro.quantidade < 0){
+            livro.quantidade --;
+            Console.WriteLine("Emprestimo realizado!");
+        }else
+            Console.WriteLine("Livro não encontrado!");
+        
+    }
 }
 public class UserCliente{
     public string nome {get; set;}
@@ -79,6 +90,14 @@ public class UserCliente{
     }
     public void listarLivros(){
         biblioteca.Listarlivro();
+    }
+    public void pegarEmprestado(){
+        if(livrosEmprestados >= 3)
+            Console.WriteLine("Limite de 3 livros emprestado atingingdos!");
+        else{
+            biblioteca.pegarEmprestado();
+            livrosEmprestados++;
+        }
     }
 }
 public class UserAdm : UserCliente{

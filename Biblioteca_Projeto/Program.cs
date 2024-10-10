@@ -64,8 +64,10 @@ public class Biblioteca{
         Console.WriteLine("Informe o Id do livro que deseja: ");
         int id = int.Parse(Console.ReadLine());
         Livro livro = livros.Find(l => l.id == id);
-        if(livro != null && livro.quantidade < 0){
+        Console.WriteLine(livro.quantidade + "Valor fora do IF");
+        if(livro != null && livro.quantidade > 0){
             livro.quantidade --;
+            Console.WriteLine(livro.quantidade + "Valor dentro do IF");
             Console.WriteLine("Emprestimo realizado!");
         }else
             Console.WriteLine("Livro não encontrado!");
@@ -132,13 +134,13 @@ public class Livro{
     }
 }
 class Program{
-    static void main(){
+    static void Main(){
         Biblioteca biblioteca = new Biblioteca();
         UserAdm adm1 = new UserAdm("Isaac", "Isaac@outlook.com", "isaacrond", "isaac2", 25, biblioteca);
         UserCliente cliente1 = new UserCliente("Alma", "Alma@outlook.com", "almagui", "alma2", 20, biblioteca);
         bool vef = false;
         while(vef == false){
-            Console.WriteLine("Deseja logar como Administrador(a) ou Cliente(c)? ");
+            Console.WriteLine("Deseja logar como Administrador(a) ou Cliente(c)? Se não deseja logar, digite s.");
             string loginEsc = Console.ReadLine().ToLower();
             if(loginEsc == "a"){
                 Console.WriteLine("Administrador usuario: ");
@@ -197,7 +199,11 @@ class Program{
                     }
                 }else
                     Console.WriteLine("Usuario ou senha incorretos!!");
-            }
+            }else if(loginEsc == "s")
+                vef = true;
+            else
+                Console.WriteLine("Erro! Digite novamente!");
+
         }
     }
 }

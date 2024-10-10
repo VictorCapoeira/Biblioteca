@@ -131,3 +131,34 @@ public class Livro{
         id = i;
     }
 }
+class Program{
+    static void main(){
+        Biblioteca biblioteca = new Biblioteca();
+        UserAdm adm1 = new UserAdm("Isaac", "Isaac@outlook.com", "isaacrond", "isaac2", 25, biblioteca);
+        UserCliente cliente1 = new UserCliente("Alma", "Alma@outlook.com", "almagui", "alma2", 20, biblioteca);
+        bool vef = false;
+        while(vef == false){
+            Console.WriteLine("Deseja logar como Administrador(a) ou Cliente(c)? ");
+            string loginEsc = Console.ReadLine().ToLower();
+            if(loginEsc == "a"){
+                Console.WriteLine("Administrador usuario: ");
+                string admUser = Console.ReadLine();
+                Console.WriteLine("Administrador senha: ");
+                string admSenha = Console.ReadLine();
+                if(adm1.user == admUser && adm1.senha == admSenha){
+                    
+                }else
+                    Console.WriteLine("Usuario ou senha incorretos!!");
+            }else if(loginEsc == "c"){
+                Console.WriteLine("Cliente usuario: ");
+                string clienteUser = Console.ReadLine();
+                Console.WriteLine("Cliente senha: ");
+                string clienteSenha = Console.ReadLine();
+                if(cliente1.user == clienteUser && cliente1.senha == clienteSenha){
+
+                }else
+                    Console.WriteLine("Usuario ou senha incorretos!!");
+            }
+        }
+    }
+}
